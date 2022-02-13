@@ -1,9 +1,8 @@
-import React, { useContext, useState } from 'react';
-import { useHistory } from 'react-router-dom';
-import Form from '../components/Form';
-import Context from '../Context/Context';
-import '../css/login.css';
-import { fetchFoods } from '../services';
+import React, { useState } from 'react';
+// import { useHistory } from 'react-router-dom';
+import Context from '../context/Context';
+// import '../css/login.css';
+import Form from '../components/FormLogin';
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -11,8 +10,8 @@ function Login() {
   const [button, setButton] = useState('true');
   const [showPassword, setShowPassword] = useState('password');
   const [icon, setIcon] = useState('far fa-eye');
-  const history = useHistory();
-  const { setFoods } = useContext(Context);
+  // const history = useHistory();
+  // const { setFoods } = useContext(Context);
 
   const validateLogin = (inputEmail, inputPassword) => {
     const getButton = document.getElementById('submit-button');
@@ -43,21 +42,21 @@ function Login() {
     }
   };
 
-  const handleClick = () => {
-    async function fetch() {
-      const res = await fetchFoods();
-      setFoods(res);
-    }
-    localStorage.setItem('mealsToken', 1);
-    localStorage.setItem('cocktailsToken', 1);
-    localStorage.setItem('user', JSON
-      .stringify({ email }));
-    fetch();
-    history.push('/foods');
-    localStorage.setItem('doneRecipes', []);
-    localStorage.setItem('favoriteRecipes', []);
-    localStorage.setItem('inProgressRecipes', {});
-  };
+  // const handleClick = () => {
+  //   async function fetch() {
+  //     const res = await fetchFoods();
+  //     setFoods(res);
+  //   }
+  //   localStorage.setItem('mealsToken', 1);
+  //   localStorage.setItem('cocktailsToken', 1);
+  //   localStorage.setItem('user', JSON
+  //     .stringify({ email }));
+  //   fetch();
+  //   history.push('/foods');
+  //   localStorage.setItem('doneRecipes', []);
+  //   localStorage.setItem('favoriteRecipes', []);
+  //   localStorage.setItem('inProgressRecipes', {});
+  // };
 
   const handleShowPassword = () => {
     if (showPassword === 'password') {
@@ -76,7 +75,7 @@ function Login() {
     setEmail,
     handleChange,
     handleShowPassword,
-    handleClick,
+    // handleClick,
   };
 
   return (
@@ -89,5 +88,4 @@ function Login() {
     </div>
   );
 }
-
-export default Login;
+module.exports = Login;
