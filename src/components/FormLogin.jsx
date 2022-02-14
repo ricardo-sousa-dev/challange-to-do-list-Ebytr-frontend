@@ -2,14 +2,12 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Form, Button, Tabs, Tab } from 'react-bootstrap';
 import '../css/components/formLogin.css';
-import api from '../api';
-import { createUser } from '../services';
+import { createUser, loginUser } from '../services';
 
 function FormLogin() {
   const [ name, setName ] = useState('');
   const [ password, setPassword ] = useState('');
   const [ email, setEmail ] = useState('');
-  const [ setUser ] = useState('');
 
   const navigate = useNavigate();
 
@@ -34,7 +32,7 @@ function FormLogin() {
       password,
     };
 
-    setUser(await api.post('/login', userData));
+    loginUser(userData);
 
     navigate('/tasks');
   };
