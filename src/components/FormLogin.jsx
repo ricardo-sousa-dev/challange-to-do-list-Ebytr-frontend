@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Form, Button, Tabs, Tab } from 'react-bootstrap';
 import '../css/components/formLogin.css';
-import api from '../api/api';
+import api from '../api';
+import { createUser } from '../services';
 
 function FormLogin() {
   const [ name, setName ] = useState('');
   const [ password, setPassword ] = useState('');
   const [ email, setEmail ] = useState('');
-  const [ response, setResponse ] = useState({});
+  const [ setUser ] = useState('');
 
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const handleNewUser = async (e) => {
     e.preventDefault();
@@ -20,18 +22,9 @@ function FormLogin() {
       password,
     };
 
-    try {
-      setResponse(await api.post('/user/new', userData));
-      console.log(response);
-
-      if (response.status === 200) {
-        history.push('/tasks');
-      }
-
-    } catch (error) {
-      alert(error)
-    }
-  }
+    await createUser(userData);
+    // navigate('/tasks');
+  };
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -41,22 +34,14 @@ function FormLogin() {
       password,
     };
 
-    try {
-      setResponse(await api.post('/user/login', userData));
-      console.log(response);
+    setUser(await api.post('/login', userData));
 
-      if (response.status === 200) {
-        history.push('/tasks');
-      }
-
-    } catch (error) {
-      alert(error)
-    }
-  }
+    navigate('/tasks');
+  };
 
   return (
     <div className="form-login">
-      <Tabs defaultActiveKey="login" id="tab" className="mb-3">
+      <Tabs defaultActiveKey="login" id="tabContainer" className="mb-3">
         <Tab eventKey="login" title="Login">
           <Form onSubmit={handleLogin}>
             <Form.Group className="mb-3" controlId="formBasicEmail">

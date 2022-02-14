@@ -1,6 +1,25 @@
-export async function fetchIngredientFoods(ingredient) {
-  const response = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${ingredient}`);
-  const data = await response.json();
-  const { meals } = data;
-  return meals;
-}
+import api from '../api';
+
+const createUser = async (userData) => {
+  try {
+    const userId = await api.post('/user', userData);
+
+    return userId;
+
+  } catch (err) {
+    alert(err);
+  }
+};
+
+const loginUser = async (userData) => {
+  try {
+    const user = await api.post('/login', userData);
+
+    return user;
+
+  } catch (err) {
+    alert(err);
+  }
+};
+
+export { createUser, loginUser};
