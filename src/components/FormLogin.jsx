@@ -1,14 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import Context from '../context/Context';
 import { useNavigate } from 'react-router-dom';
 import { Form, Button, Tabs, Tab } from 'react-bootstrap';
 import '../css/components/formLogin.css';
-import { createUser, loginUser } from '../services';
+import api from '../api';
+
 
 function FormLogin() {
   const [ name, setName ] = useState('');
   const [ password, setPassword ] = useState('');
   const [ email, setEmail ] = useState('');
   const [ newUserOk, setNewUserOk ] = useState(false);
+
+  const { setUserData } = useContext(Context);
 
   const navigate = useNavigate();
 
@@ -21,8 +25,13 @@ function FormLogin() {
       password,
     };
 
-    await createUser(userData);
-    setNewUserOk(true);
+    try {
+      await api.post('/user', userData);
+      setNewUserOk(true);
+
+    } catch (err) {
+      alert(err);
+    }
   };
 
   const handleLogin = async (e) => {
@@ -33,9 +42,13 @@ function FormLogin() {
       password,
     };
 
-    loginUser(userData);
+    try {
+      setUserData(await api.post('/login', userData));
+      navigate('/tasks');
 
-    navigate('/tasks');
+    } catch (err) {
+      alert(err);
+    }
   };
 
   return (
@@ -43,11 +56,11 @@ function FormLogin() {
       <Tabs defaultActiveKey="login" id="tabContainer" className="mb-3">
         <Tab eventKey="login" title="Login">
           <Form onSubmit={handleLogin}>
-            <Form.Group className="mb-3" controlId="formBasicEmail">
+            <Form.Group className="mb-3" controlId="loginUserEmail">
               <Form.Label>Email</Form.Label>
               <Form.Control type="email" placeholder="Insira seu email" onChange={e => setEmail(e.target.value)} />
             </Form.Group>
-            <Form.Group className="mb-3" controlId="formBasicPassword">
+            <Form.Group className="mb-3" controlId="loginUserPassword">
               <Form.Label>Senha</Form.Label>
               <Form.Control type="password" placeholder="Insira sua senha" onChange={e => setPassword(e.target.value)} />
             </Form.Group>
@@ -58,15 +71,15 @@ function FormLogin() {
         </Tab>
         <Tab eventKey="register" title="Cadastro">
           <Form onSubmit={handleNewUser}>
-            <Form.Group className="mb-3" controlId="formBasicName">
+            <Form.Group className="mb-3" controlId="createUserName">
               <Form.Label>Nome</Form.Label>
               <Form.Control type="text" placeholder="Insira seu nome" onChange={e => setName(e.target.value)} />
             </Form.Group>
-            <Form.Group className="mb-3" controlId="formBasicEmail">
+            <Form.Group className="mb-3" controlId="createUserEmail">
               <Form.Label>Email</Form.Label>
               <Form.Control type="email" placeholder="Insira seu email" onChange={e => setEmail(e.target.value)} />
             </Form.Group>
-            <Form.Group className="mb-3" controlId="formBasicPassword">
+            <Form.Group className="mb-3" controlId="createUserPassword">
               <Form.Label>Senha</Form.Label>
               <Form.Control type="password" placeholder="Insira sua senha" onChange={e => setPassword(e.target.value)} />
             </Form.Group>

@@ -3,22 +3,21 @@ import PropTypes from 'prop-types';
 import Context from './Context';
 
 function Provider({ children }) {
-  const [currentPage, setCurrentPage] = useState(''); 
+  const [ userData, setUserData ] = useState({});
 
   const providerValue = {
-    currentPage,
-    setCurrentPage,
+    userData, setUserData
   };
 
   return (
-    <Context.Provider value={ providerValue }>
-      { children }
+    <Context.Provider value={providerValue}>
+      {children}
     </Context.Provider>
   );
 }
 
 Provider.propTypes = {
-  children: PropTypes.oneOfType(PropTypes.node, PropTypes.func).isRequired,
+  children: PropTypes.oneOfType([PropTypes.node]).isRequired,
 };
 
 export default Provider;
