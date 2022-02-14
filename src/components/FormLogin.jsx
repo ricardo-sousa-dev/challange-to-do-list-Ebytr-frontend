@@ -8,6 +8,7 @@ function FormLogin() {
   const [ name, setName ] = useState('');
   const [ password, setPassword ] = useState('');
   const [ email, setEmail ] = useState('');
+  const [ newUserOk, setNewUserOk ] = useState(false);
 
   const navigate = useNavigate();
 
@@ -21,7 +22,7 @@ function FormLogin() {
     };
 
     await createUser(userData);
-    // navigate('/tasks');
+    setNewUserOk(true);
   };
 
   const handleLogin = async (e) => {
@@ -75,6 +76,7 @@ function FormLogin() {
           </Form>
         </Tab>
       </Tabs>
+      {newUserOk ? <div className="alert-newUser">Usuário cadastrado com sucesso!</div> : null}
     </div>
   );
 }
