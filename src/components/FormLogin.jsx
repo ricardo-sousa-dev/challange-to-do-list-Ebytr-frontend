@@ -29,7 +29,7 @@ function FormLogin() {
       setNewUserOk(true);
 
     } catch (err) {
-      alert(err);
+      alert(err.message);
     }
   };
 
@@ -46,7 +46,7 @@ function FormLogin() {
       navigate('/tasks');
 
     } catch (err) {
-      alert(err);
+      alert(err.message);
     }
   };
 

@@ -4,9 +4,10 @@ import Context from './Context';
 
 function Provider({ children }) {
   const [ userData, setUserData ] = useState({});
+  const [ tasks, setTasks ] = useState({});
 
   const providerValue = {
-    userData, setUserData
+    userData, setUserData, tasks, setTasks
   };
 
   return (
@@ -17,7 +18,7 @@ function Provider({ children }) {
 }
 
 Provider.propTypes = {
-  children: PropTypes.oneOfType([PropTypes.node]).isRequired,
+  children: PropTypes.oneOfType([ PropTypes.node ]).isRequired,
 };
 
 export default Provider;
