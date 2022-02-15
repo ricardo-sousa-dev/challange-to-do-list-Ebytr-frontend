@@ -1,5 +1,5 @@
-.table-tasks {
-  max-width: 800px;
+.table-responsive{
+  margin: 0 10px;
 }
 
 .item-table, .task-table, .status-table {

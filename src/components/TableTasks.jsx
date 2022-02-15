@@ -15,7 +15,7 @@ function TableTasks() {
       <tbody>
         <tr>
           <td className="item-table">1</td>
-          <td>atualizar o Linkedin</td>
+          <td className="task-table">atualizar o Linkedin</td>
           <td className="status-table">em andamento</td>
         </tr>
       </tbody>
