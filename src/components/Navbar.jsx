@@ -1,12 +1,12 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import { Navbar, Nav, Offcanvas, Container } from 'react-bootstrap';
 import '../css/components/navbar.css';
 import Logo from '../images/ebytr.jpeg';
-// import Context from '../context/Context';
+import Context from '../context/Context';
 // import { useNavigate } from 'react-router-dom';
 
 // const navigate = useNavigate();
-// const { userData } = useContext(Context);
+const { userData } = useContext(Context);
 
 
 function NavbarTasks() {
@@ -29,7 +29,7 @@ function NavbarTasks() {
           placement="end"
         >
           <Offcanvas.Header closeButton>
-            <Offcanvas.Title id="offcanvasNavbarLabel"></Offcanvas.Title>
+            <Offcanvas.Title id="offcanvasNavbarLabel">{userData.name}</Offcanvas.Title>
           </Offcanvas.Header>
           <Offcanvas.Body>
             <Nav className="justify-content-end flex-grow-1 pe-3">
