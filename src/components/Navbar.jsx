@@ -1,19 +1,14 @@
-import React, {useContext} from 'react';
+import React, { useContext } from 'react';
 import { Navbar, Nav, Offcanvas, Container } from 'react-bootstrap';
 import '../css/components/navbar.css';
 import Logo from '../images/ebytr.jpeg';
 import Context from '../context/Context';
-// import { useNavigate } from 'react-router-dom';
-
-// const navigate = useNavigate();
-const { userData } = useContext(Context);
-
+import { Link } from 'react-router-dom';
 
 function NavbarTasks() {
 
-  // const exitPage = () => {
-  //   // navigate('/tasks');
-  // };
+  const { userData } = useContext(Context);
+  const user = userData.data.user.name;
 
   return (
     <Navbar bg="light" expand={false} className="navbar">
@@ -29,11 +24,11 @@ function NavbarTasks() {
           placement="end"
         >
           <Offcanvas.Header closeButton>
-            <Offcanvas.Title id="offcanvasNavbarLabel">{userData.name}</Offcanvas.Title>
+            <Offcanvas.Title id="offcanvasNavbarLabel" className="username">{user}</Offcanvas.Title>
           </Offcanvas.Header>
           <Offcanvas.Body>
             <Nav className="justify-content-end flex-grow-1 pe-3">
-              <Nav.Link href='#'>Sair</Nav.Link>
+              <Nav.Link as={Link} to='/'>Sair</Nav.Link>
             </Nav>
           </Offcanvas.Body>
         </Navbar.Offcanvas>
