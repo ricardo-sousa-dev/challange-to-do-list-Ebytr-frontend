@@ -1,8 +1,11 @@
 import React from 'react';
+import TableTasks from '../components/TableTasks';
 
 function Tasks() {
   return (
-    <div>Tasks</div>
+    <div className="tasks-table">
+      <TableTasks />
+    </div>
   );
 }
 
