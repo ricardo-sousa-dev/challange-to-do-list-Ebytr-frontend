@@ -1,0 +1,7 @@
+.table-tasks {
+  max-width: 800px;
+}
+
+.item-table, .task-table, .status-table {
+  text-align: center;
+}

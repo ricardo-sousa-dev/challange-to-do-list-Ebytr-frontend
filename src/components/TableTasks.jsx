@@ -1,35 +1,22 @@
 import React from 'react';
 import Table from 'react-bootstrap/Table';
+import '../css/components/tableTasks.css';
 
-function TableTasks () {
+function TableTasks() {
   return (
-    <Table responsive>
+    <Table responsive className="table-tasks">
       <thead>
         <tr>
-          <th>#</th>
-          {Array.from({ length: 12 }).map((_, index) => (
-            <th key={index}>Table heading</th>
-          ))}
+          <th className="item-table">Item</th>
+          <th className="task-table">Tarefa</th>
+          <th className="status-table">Status</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td>1</td>
-          {Array.from({ length: 12 }).map((_, index) => (
-            <td key={index}>Table cell {index}</td>
-          ))}
-        </tr>
-        <tr>
-          <td>2</td>
-          {Array.from({ length: 12 }).map((_, index) => (
-            <td key={index}>Table cell {index}</td>
-          ))}
-        </tr>
-        <tr>
-          <td>3</td>
-          {Array.from({ length: 12 }).map((_, index) => (
-            <td key={index}>Table cell {index}</td>
-          ))}
+          <td className="item-table">1</td>
+          <td>atualizar o Linkedin</td>
+          <td className="status-table">em andamento</td>
         </tr>
       </tbody>
     </Table>
