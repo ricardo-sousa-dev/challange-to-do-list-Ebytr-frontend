@@ -5,7 +5,6 @@ import { Form, Button, Tabs, Tab } from 'react-bootstrap';
 import '../css/components/formLogin.css';
 import api from '../api';
 
-
 function FormLogin() {
   const [ name, setName ] = useState('');
   const [ password, setPassword ] = useState('');
