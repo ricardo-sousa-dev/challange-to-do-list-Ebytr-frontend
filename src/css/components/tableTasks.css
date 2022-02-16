@@ -1,7 +1,13 @@
-.table-responsive{
+.table {
   margin: 0 10px;
+  border-radius: 5px;
+  max-width: 99%;
 }
 
-.item-table, .task-table, .status-table, .description-table, .buttons-table {
+.item-table,
+.task-table,
+.status-table,
+.description-table,
+.buttons-table {
   text-align: center;
 }

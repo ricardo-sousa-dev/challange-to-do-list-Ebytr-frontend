@@ -7,7 +7,7 @@ import Logo from '../images/ebytr.jpeg';
 function Login() {
   return (
     <div className="login-page">
-      <img src={Logo} alt="logo" className="logo" />
+      <img src={Logo} alt="logo" className="logo-login" />
       <Form />
     </div>
   );
