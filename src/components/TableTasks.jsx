@@ -8,27 +8,38 @@ function TableTasks() {
   const { userData, tasks, setTasks } = useContext(Context);
 
   useEffect(() => {
-    setTasks(api.get('/tasks',
-      { headers: { authorization: userData.token } }));
+    api.get('/tasks',
+      { headers: { 'authorization': userData.data.token } })
+      .then(res => setTasks(res.data));
   }, []);
+  console.log(tasks);
 
   return (
     <>
-      {tasks.map(task => task)}
-      <Table responsive className="table-tasks">
+      <Table striped bordered hover>
         <thead>
           <tr>
             <th className="item-table">Item</th>
             <th className="task-table">Tarefa</th>
+            <th className="description-table">Descrição</th>
             <th className="status-table">Status</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td className="item-table">1</td>
-            <td className="task-table">atualizar o Linkedin</td>
-            <td className="status-table">em andamento</td>
-          </tr>
+          {tasks.length > 0 ?
+            tasks.map((task, index) => (
+              <tr key={task._id}>
+                <td>{index + 1}</td>
+                <td>{task.task}</td>
+                <td>{task.description}</td>
+                <td>{task.status}</td>
+                <td>
+                  <button className="btn btn-primary">Edit</button>
+                  <button className="btn btn-danger">Delete</button>
+                </td>
+              </tr>
+            )) : null}
         </tbody>
       </Table>
     </>

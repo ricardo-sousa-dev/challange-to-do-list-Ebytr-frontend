@@ -2,6 +2,6 @@
   margin: 0 10px;
 }
 
-.item-table, .task-table, .status-table {
+.item-table, .task-table, .status-table, .description-table, .buttons-table {
   text-align: center;
 }
