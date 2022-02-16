@@ -22,7 +22,6 @@ function TableTasks() {
             <th className="task-table">Tarefa</th>
             <th className="date-table">Data</th>
             <th className="status-table">Status</th>
-
           </tr>
         </thead>
         <tbody>
