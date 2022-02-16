@@ -5,9 +5,10 @@ import Context from './Context';
 function Provider({ children }) {
   const [ userData, setUserData ] = useState({});
   const [ tasks, setTasks ] = useState([]);
+  const [ newTask, setNewTask ] = useState('');
 
   const providerValue = {
-    userData, setUserData, tasks, setTasks
+    userData, setUserData, tasks, setTasks, newTask, setNewTask
   };
 
   return (
