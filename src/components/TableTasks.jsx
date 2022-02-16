@@ -1,5 +1,5 @@
 import React, { useEffect, useContext } from 'react';
-import {Table} from 'react-bootstrap';
+import { Table } from 'react-bootstrap';
 import '../css/components/tableTasks.css';
 import Context from '../context/Context';
 import api from '../api';
@@ -12,7 +12,6 @@ function TableTasks() {
       { headers: { 'authorization': userData.data.token } })
       .then(res => setTasks(res.data));
   }, []);
-  console.log(tasks);
 
   return (
     <>
@@ -27,15 +26,14 @@ function TableTasks() {
           </tr>
         </thead>
         <tbody>
-          {tasks.length > 0 ?
-            tasks.map((task, index) => (
-              <tr key={task._id}>
-                <td className="item-table">{index + 1}</td>
-                <td className="task-table">{task.task}</td>
-                <td className="date-table">{task.description}</td>
-                <td className="status-table">{task.status}</td>
-              </tr>
-            )) : null}
+          {tasks.map((task, index) => (
+            <tr key={task._id}>
+              <td className="item-table">{index + 1}</td>
+              <td className="task-table">{task.task}</td>
+              <td className="date-table">{task.createdAt}</td>
+              <td className="status-table">{task.status}</td>
+            </tr>
+          ))}
         </tbody>
       </Table>
     </>
