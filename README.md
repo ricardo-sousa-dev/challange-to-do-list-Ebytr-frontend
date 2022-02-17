@@ -1,70 +1,86 @@
-# Getting Started with Create React App
+# Bem-vindos ao Todo List Ebytr - Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Contexto
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+Esse projeto foi desenvolvido para uma vaga de backend na empresa [`Ebytr`](www.betrybe.com).
 
-### `npm start`
+A proposta era desenvolver uma aplicação backend de uma Lista de Tarefas para a empresa, com as funcionalidades de criação, edição, leitura e exclusão de tarefas por usuário.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Os tipos de dados adotados são:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+#### Tarefas
 
-### `npm test`
+|   Task   |  Status  |  CreatedAt |    id    | 
+| :------: | :------: |  :------:  | :------: | 
+| `string` | `string` |  `string`  | `string` | 
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+#### Usuário
 
-### `npm run build`
+|  UserId  |  Email   |  Password  |   Name   |   Role   | 
+| :------: | :------: |  :------:  | :------: | :------: | 
+| `string` | `string` |  `string`  | `string` | `string` |
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+---
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+---
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Como instalar
 
-### `npm run eject`
+Pre-requisitos para rodar o projeto: 
+- NPM
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Copie o ssh do projeto `git@github.com:ricardo-sousa-dev/challange-to-do-list-Ebytr-frontend.git`
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+* Abra um terminal no seu computador e utilize os comandos a baixo na ordem que são apresentados:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+  * `git clone git@github.com:ricardo-sousa-dev/challange-to-do-list-Ebytr-frontend.git`
+  * `cd challange-to-do-list-Ebytr-backend`
+  * `npm install`
+  * `npm start`
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+  A aplicação está configurada para rodar na porta local `3000`. Caso queira rodar o projeto localmente, será necessário fazer o clone do [repositório do backend](https://github.com/ricardo-sousa-dev/challange-to-do-list-Ebytr-backend) e seguir os mesmos passos de instalação do projeto. Ao final, o backend estárá rodando na porta `3001` e o frontend na porta `3000`.
 
-## Learn More
+---
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Modo de utilização
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+A aplicação possui as seguintes telas:
+* `/` => Login - O usuário poderá se cadastrar ou efetuar login, caso já possua cadastro
+* `/tasks` => Tasks - O usuário poderá visualizar suas tarefas cadastradas, assim como editar, excluir ou criar uma nova tarefa
+---
 
-### Code Splitting
+## Modo de desenvolvimento
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+---
 
-### Analyzing the Bundle Size
+O projeto foi desenvolvido utilizando `TDD`, inicialmente com testes de integração, posteriormente a construção da [API](https://github.com/ricardo-sousa-dev/challange-to-do-list-Ebytr-backend) e depois a construção do frontend.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### Tecnologias
 
-### Making a Progressive Web App
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Foi utilizado para o desenvolvimento desse projeto o `React JS` com `Bootstrap` para a criação básica, `Axios` para as requisições no backend e `JWT` para a geração de token de autenticação.
 
-### Advanced Configuration
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## Próximos passos
 
-### Deployment
+* Implementação da cobertura de testes unitários e integração com `Jest` ou `Cypress`
+* Implementação de Categorias
+* Implementação de Relatórios com filtros de categoria, data e status
+* Integração com Google Calendar
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+---
 
-### `npm run build` fails to minify
+## Contatos
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+#### Ricardo Sousa :smiley:
+
+[![Linkedin Badge](https://img.shields.io/badge/-LinkedIn-0077B5?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/rwmsousa/)](https://www.linkedin.com/in/rwmsousa/) [![Gmail Badge](https://img.shields.io/badge/-Gmail-D14836?style=flat-square&logo=Gmail&logoColor=white&link=mailto:rwmsousa@gmail.com)](mailto:rwmsousa@gmail.com)
+
+<img src="https://bit.ly/foto-linkedin" style="height: 100px; width:100px; border-radius:50px"/>
+
+
+
