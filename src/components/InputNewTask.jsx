@@ -6,21 +6,19 @@ import add_task from '../images/add_task.svg';
 import api from '../api';
 
 function FormNewTask() {
-  const { userData, setTasks } = useContext(Context);
+  const { userData, setTasks, setIsSaving } = useContext(Context);
   const [ newTask, setNewTask ] = useState('');
   const [ newStatus, setNewStatus ] = useState('');
-  console.log('>>>>>>>>>>>>> ~ newStatus', newStatus);
-  console.log('>>>>>>>>>>>>> ~ newTask', newTask);
-  console.log('>>>>>>>>>>>>> ~ userData', userData.data.token);
 
   const saveTask = {
     task: newTask,
     status: newStatus
   };
 
-
   const handleSubmit = async (event) => {
     event.preventDefault();
+
+    setIsSaving(false);
 
     api.post('/tasks',
       saveTask,
@@ -30,6 +28,10 @@ function FormNewTask() {
     api.get('/tasks',
       { headers: { 'authorization': userData.data.token } })
       .then(res => setTasks(res.data));
+
+    setTimeout(() => {
+      setIsSaving(true);
+    }, 2000);
   };
 
   return (
@@ -54,7 +56,7 @@ function FormNewTask() {
       </Form.Select>
 
       <button type="button" onClick={handleSubmit}>
-        <img src={add_task} alt="Add Task" className="img-btn-new-task"/>
+        <img src={add_task} alt="Add Task" className="img-btn-new-task" />
       </button>
     </div>
   );

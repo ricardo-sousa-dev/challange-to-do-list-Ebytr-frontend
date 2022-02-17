@@ -6,9 +6,17 @@ function Provider({ children }) {
   const [ userData, setUserData ] = useState({});
   const [ tasks, setTasks ] = useState([]);
   const [ newTask, setNewTask ] = useState('');
+  const [ isSaving, setIsSaving ] = useState(true);
 
   const providerValue = {
-    userData, setUserData, tasks, setTasks, newTask, setNewTask
+    userData,
+    setUserData,
+    tasks,
+    setTasks,
+    newTask,
+    setNewTask,
+    isSaving,
+    setIsSaving
   };
 
   return (
