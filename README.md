@@ -72,6 +72,8 @@ Foi utilizado para o desenvolvimento desse projeto o `React JS` com `Bootstrap` 
 * Implementação de Categorias
 * Implementação de Relatórios com filtros de categoria, data e status
 * Integração com Google Calendar
+* Escrever a documentação do projeto
+* Implementar a instalação do projeto com Docker Compose
 
 ---
 
