@@ -2,10 +2,11 @@ import React, { useEffect, useContext } from 'react';
 import { Table, Button } from 'react-bootstrap';
 import '../css/components/tableTasks.css';
 import Context from '../context/Context';
+import ModalEditTask from './ModalEditTask';
 import api from '../api';
 
 function TableTasks() {
-  const { userData, tasks, setTasks, isSaving, setIsSaving } = useContext(Context);
+  const { userData, tasks, setTasks, isSaving, setIsSaving, setShowModalEditTask, setTaskInEdition, showModalEditTask } = useContext(Context);
 
   useEffect(() => {
     api.get('/tasks',
@@ -13,13 +14,12 @@ function TableTasks() {
       .then(res => setTasks(res.data));
   }, [ isSaving ]);
 
-  const updateTask = async (id) => {
-    setIsSaving(false);
+  const updateTask = async ({ target: { _id, task, createdAt, status } }) => {
 
-    api.update(`/tasks/${ id }`, id)
-      .then(res => res.data);
-
-    setIsSaving(true);
+    console.log('antes', showModalEditTask);
+    setTaskInEdition({ _id, task, createdAt, status });
+    setShowModalEditTask(true);
+    console.log('depois', showModalEditTask);
   };
 
   const deleteTask = (idTask) => {
@@ -34,6 +34,7 @@ function TableTasks() {
 
   return (
     <>
+      <ModalEditTask />
       <Table striped bordered hover>
         <thead>
           <tr>

@@ -7,6 +7,9 @@ function Provider({ children }) {
   const [ tasks, setTasks ] = useState([]);
   const [ newTask, setNewTask ] = useState('');
   const [ isSaving, setIsSaving ] = useState(true);
+  const [ showModalEditTask, setShowModalEditTask ] = useState(false);
+  const [ taskInEdition, setTaskInEdition ] = useState({});
+
 
   const providerValue = {
     userData,
@@ -16,7 +19,11 @@ function Provider({ children }) {
     newTask,
     setNewTask,
     isSaving,
-    setIsSaving
+    setIsSaving,
+    showModalEditTask,
+    setShowModalEditTask,
+    taskInEdition,
+    setTaskInEdition
   };
 
   return (
