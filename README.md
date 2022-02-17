@@ -42,6 +42,7 @@ Copie o ssh do projeto `git@github.com:ricardo-sousa-dev/challange-to-do-list-Eb
 
   A aplicação está configurada para rodar na porta local `3000`. Caso queira rodar o projeto localmente, será necessário fazer o clone do [repositório do backend](https://github.com/ricardo-sousa-dev/challange-to-do-list-Ebytr-backend) e seguir os mesmos passos de instalação do projeto. Ao final, o backend estárá rodando na porta `3001` e o frontend na porta `3000`.
 
+#### [Clique aqui](https://challange-ebytr-frontend.herokuapp.com/) para utilizar a aplicação online, sem a necessidade de instalação local.
 ---
 
 ## Modo de utilização
