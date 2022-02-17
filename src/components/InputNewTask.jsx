@@ -52,7 +52,6 @@ function FormNewTask() {
         <option defaultValue>Status</option>
         <option value="pendente">Pendente</option>
         <option value="em andamento">Em andamento</option>
-        <option value="pronto">Pronto</option>
       </Form.Select>
 
       <button type="button" onClick={handleSubmit}>

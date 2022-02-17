@@ -1,17 +1,27 @@
 import React, { useEffect, useContext } from 'react';
-import { Table } from 'react-bootstrap';
+import { Table, Button } from 'react-bootstrap';
 import '../css/components/tableTasks.css';
 import Context from '../context/Context';
 import api from '../api';
 
 function TableTasks() {
-  const { userData, tasks, setTasks } = useContext(Context);
+  const { userData, tasks, setTasks, isSaving, setIsSaving } = useContext(Context);
 
   useEffect(() => {
     api.get('/tasks',
       { headers: { 'authorization': userData.data.token } })
       .then(res => setTasks(res.data));
-  }, []);
+  }, [isSaving]);
+
+  const deleteTask = (idTask) => {
+    setIsSaving(false);
+
+    api.delete(`/tasks/${ idTask }`, idTask);
+
+    setTimeout(() => {
+      setIsSaving(true);
+    }, 2000);
+  };
 
   return (
     <>
@@ -22,6 +32,7 @@ function TableTasks() {
             <th className="task-table">Tarefa</th>
             <th className="date-table">Data</th>
             <th className="status-table">Status</th>
+            <th className="delete-table"></th>
           </tr>
         </thead>
         <tbody>
@@ -31,6 +42,16 @@ function TableTasks() {
               <td className="task-table">{task.task}</td>
               <td className="date-table">{task.createdAt}</td>
               <td className="status-table">{task.status}</td>
+              <td className="delete-table">
+                <Button
+                  variant="outline-secondary"
+                  type="button"
+                  value={task._id}
+                  onClick={(event) => deleteTask(event.target.value)}
+                >
+                  Excluir
+                </Button>
+              </td>
             </tr>
           ))}
         </tbody>

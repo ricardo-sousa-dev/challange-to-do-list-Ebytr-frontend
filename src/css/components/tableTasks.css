@@ -7,7 +7,11 @@
 .item-table,
 .task-table,
 .status-table,
-.date-table,
-.buttons-table {
+.date-table{
   text-align: center;
+}
+
+.delete-table {
+  text-align: right;
+width:40px;
 }
