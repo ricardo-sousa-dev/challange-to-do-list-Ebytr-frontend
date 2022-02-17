@@ -1,12 +1,20 @@
-import React, {useContext} from 'react';
+import React, { useContext } from 'react';
 import { Modal, Button } from 'react-bootstrap';
-// import '../css/components/modalEditTask.css';
+import '../css/components/modalEditTask.css';
+import { InputNewTask } from '../components';
 import Context from '../context/Context';
 
 function ModalEditTask() {
-  const { showModalEditTask, setShowModalEditTask } = useContext(Context);
+  const {
+    showModalEditTask,
+    setShowModalEditTask,
+    setStatusPronto
+  } = useContext(Context);
 
-  const handleClose = () => setShowModalEditTask(false);
+  const handleClose = () => {
+    setStatusPronto(false);
+    setShowModalEditTask(false);
+  };
 
   // const saveTaskUpdated = async (event) => {
   //     event.preventDefault();
@@ -23,16 +31,15 @@ function ModalEditTask() {
   return (
     <>
       <Modal show={showModalEditTask} onHide={handleClose} animation={false}>
-        <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
+        <Modal.Header closeButton onClick={handleClose}>
+          <Modal.Title>Editar Tarefa</Modal.Title>
         </Modal.Header>
-        <Modal.Body>Woohoo, youre reading this text in a modal!</Modal.Body>
+        <Modal.Body>
+          <InputNewTask />
+        </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
           <Button variant="primary" onClick={handleClose}>
-            Save Changes
+            Salvar tarefa
           </Button>
         </Modal.Footer>
       </Modal>

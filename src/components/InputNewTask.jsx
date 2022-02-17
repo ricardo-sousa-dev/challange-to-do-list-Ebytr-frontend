@@ -6,7 +6,14 @@ import add_task from '../images/add_task.svg';
 import api from '../api';
 
 function FormNewTask() {
-  const { userData, setTasks, setIsSaving } = useContext(Context);
+
+  const {
+    userData,
+    setTasks,
+    setIsSaving,
+    statusPronto,
+  } = useContext(Context);
+
   const [ newTask, setNewTask ] = useState('');
   const [ newStatus, setNewStatus ] = useState('');
 
@@ -42,16 +49,16 @@ function FormNewTask() {
         aria-describedby="New Task"
         className="input-new-task"
         onChange={(event) => setNewTask(event.target.value)}
-        placeholder="Nova tarefa"
+        placeholder="Tarefa"
       />
 
       <Form.Select
         aria-label="Select Status"
         onChange={(event) => setNewStatus(event.target.value)}
         className="select-status">
-        <option defaultValue>Status</option>
-        <option value="pendente">Pendente</option>
+        <option defaultValue value="pendente">Pendente</option>
         <option value="em andamento">Em andamento</option>
+        {statusPronto ? <option value="pronto">Pronto</option> : null}
       </Form.Select>
 
       <button type="button" onClick={handleSubmit}>

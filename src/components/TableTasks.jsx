@@ -6,7 +6,16 @@ import ModalEditTask from './ModalEditTask';
 import api from '../api';
 
 function TableTasks() {
-  const { userData, tasks, setTasks, isSaving, setIsSaving, setShowModalEditTask, setTaskInEdition, showModalEditTask } = useContext(Context);
+  const {
+    userData,
+    tasks,
+    setTasks,
+    isSaving,
+    setIsSaving,
+    setShowModalEditTask,
+    setTaskInEdition,
+    setStatusPronto
+  } = useContext(Context);
 
   useEffect(() => {
     api.get('/tasks',
@@ -16,10 +25,10 @@ function TableTasks() {
 
   const updateTask = async ({ target: { _id, task, createdAt, status } }) => {
 
-    console.log('antes', showModalEditTask);
     setTaskInEdition({ _id, task, createdAt, status });
+    setStatusPronto(true);
     setShowModalEditTask(true);
-    console.log('depois', showModalEditTask);
+
   };
 
   const deleteTask = (idTask) => {
@@ -40,7 +49,7 @@ function TableTasks() {
           <tr>
             <th className="item-table">Item</th>
             <th className="task-table">Tarefa</th>
-            <th className="date-table">Data</th>
+            <th className="date-table">Criado em</th>
             <th className="status-table">Status</th>
             <th className="buttons-table"></th>
           </tr>
