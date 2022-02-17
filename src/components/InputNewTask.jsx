@@ -12,17 +12,18 @@ function FormNewTask() {
     setTasks,
     setIsSaving,
     statusPronto,
+    // taskInEdition
   } = useContext(Context);
 
   const [ newTask, setNewTask ] = useState('');
   const [ newStatus, setNewStatus ] = useState('');
 
   const saveTask = {
-    task: newTask,
-    status: newStatus
+    task: newTask || 'tarefa',
+    status: newStatus || 'pendente',
   };
 
-  const handleSubmit = async (event) => {
+  const handleSubmitNewTask = async (event) => {
     event.preventDefault();
 
     setIsSaving(false);
@@ -61,9 +62,11 @@ function FormNewTask() {
         {statusPronto ? <option value="pronto">Pronto</option> : null}
       </Form.Select>
 
-      <button type="button" onClick={handleSubmit}>
-        <img src={add_task} alt="Add Task" className="img-btn-new-task" />
-      </button>
+      {!statusPronto ?
+        <button type="button" onClick={handleSubmitNewTask}>
+          <img src={add_task} alt="Add Task" className="img-btn-new-task" />
+        </button>
+        : null}
     </div>
   );
 }

@@ -5,6 +5,7 @@ import { InputNewTask } from '../components';
 import Context from '../context/Context';
 
 function ModalEditTask() {
+
   const {
     showModalEditTask,
     setShowModalEditTask,
@@ -15,6 +16,13 @@ function ModalEditTask() {
     setStatusPronto(false);
     setShowModalEditTask(false);
   };
+
+  // const handleSubmitEditTask = () => {
+  //   event.preventDefault();
+  //   setIsSaving(false);
+
+  //   api.update(`/tasks/${ id }`, id)
+  // }
 
   // const saveTaskUpdated = async (event) => {
   //     event.preventDefault();

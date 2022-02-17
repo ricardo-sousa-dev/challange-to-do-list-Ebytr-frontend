@@ -23,9 +23,9 @@ function TableTasks() {
       .then(res => setTasks(res.data));
   }, [ isSaving ]);
 
-  const updateTask = async ({ target: { _id, task, createdAt, status } }) => {
+  const updateTask = async (objectToUpdate) => {
 
-    setTaskInEdition({ _id, task, createdAt, status });
+    setTaskInEdition(objectToUpdate);
     setStatusPronto(true);
     setShowModalEditTask(true);
 
@@ -66,7 +66,7 @@ function TableTasks() {
                   variant="outline-secondary"
                   type="button"
                   className="update-button"
-                  onClick={(event) => updateTask(event)}
+                  onClick={() => updateTask({ _id: task._id, task: task.task, status: task.status })}
                 >
                   Editar
                 </Button>
