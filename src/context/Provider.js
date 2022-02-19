@@ -9,7 +9,7 @@ function Provider({ children }) {
   const [ isSaving, setIsSaving ] = useState(true);
   const [ showModalEditTask, setShowModalEditTask ] = useState(false);
   const [ taskInEdition, setTaskInEdition ] = useState({});
-  const [ statusPronto, setStatusPronto ] = useState(false);
+  const [ modalEdit, setModalEdit ] = useState(false);
 
 
   const providerValue = {
@@ -25,8 +25,8 @@ function Provider({ children }) {
     setShowModalEditTask,
     taskInEdition,
     setTaskInEdition,
-    statusPronto,
-    setStatusPronto,
+    modalEdit,
+    setModalEdit,
   };
 
   return (

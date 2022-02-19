@@ -14,7 +14,7 @@ function TableTasks() {
     setIsSaving,
     setShowModalEditTask,
     setTaskInEdition,
-    setStatusPronto
+    setModalEdit
   } = useContext(Context);
 
   useEffect(() => {
@@ -26,7 +26,7 @@ function TableTasks() {
   const updateTask = async (objectToUpdate) => {
 
     setTaskInEdition(objectToUpdate);
-    setStatusPronto(true);
+    setModalEdit(true);
     setShowModalEditTask(true);
 
   };

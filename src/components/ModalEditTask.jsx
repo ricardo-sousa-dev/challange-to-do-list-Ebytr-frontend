@@ -9,11 +9,11 @@ function ModalEditTask() {
   const {
     showModalEditTask,
     setShowModalEditTask,
-    setStatusPronto
+    setModalEdit
   } = useContext(Context);
 
   const handleClose = () => {
-    setStatusPronto(false);
+    setModalEdit(false);
     setShowModalEditTask(false);
   };
 

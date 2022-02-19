@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { Form } from 'react-bootstrap';
 import '../css/components/inputNewTask.css';
 import Context from '../context/Context';
@@ -11,17 +11,23 @@ function FormNewTask() {
     userData,
     setTasks,
     setIsSaving,
-    statusPronto,
+    modalEdit,
     // taskInEdition
   } = useContext(Context);
 
-  const [ newTask, setNewTask ] = useState('');
-  const [ newStatus, setNewStatus ] = useState('');
+  const [ newTask, setNewTask ] = useState('tarefa');
+  const [ newStatus, setNewStatus ] = useState('pendente');
+  console.log('>>>>>>>>>>>>> ~ newTask', newTask);
+  console.log('>>>>>>>>>>>>> ~ newStatus', newStatus);
 
-  const saveTask = {
-    task: newTask || 'tarefa',
-    status: newStatus || 'pendente',
-  };
+  let saveTask = {};
+
+  useEffect(() => {
+    saveTask = {
+      task: newTask,
+      status: newStatus,
+    };
+  }, [ newTask, newStatus ]);
 
   const handleSubmitNewTask = async (event) => {
     event.preventDefault();
@@ -59,10 +65,10 @@ function FormNewTask() {
         className="select-status">
         <option defaultValue value="pendente">Pendente</option>
         <option value="em andamento">Em andamento</option>
-        {statusPronto ? <option value="pronto">Pronto</option> : null}
+        {modalEdit ? <option value="pronto">Pronto</option> : null}
       </Form.Select>
 
-      {!statusPronto ?
+      {!modalEdit ?
         <button type="button" onClick={handleSubmitNewTask}>
           <img src={add_task} alt="Add Task" className="img-btn-new-task" />
         </button>
