@@ -1,0 +1,4 @@
+// https://exerror.com/syntaxerror-support-for-the-experimental-syntax-jsx-isnt-currently-enabled/
+{
+  "presets": ["@babel/preset-env", "@babel/preset-react"]
+}
