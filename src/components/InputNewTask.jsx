@@ -16,6 +16,7 @@ function FormNewTask() {
     setNewStatus,
     newTask,
     setNewTask,
+    taskInEdition
   } = useContext(Context);
 
   let saveTask = {};
@@ -27,23 +28,30 @@ function FormNewTask() {
     };
   }, [ newTask, newStatus ]);
 
-  const handleSubmitNewTask = async (event) => {
+  const handleSubmitTask = async (event) => {
     event.preventDefault();
 
-    setIsSaving(false);
-    setNewTask('tarefa');
-    api.post('/tasks',
-      saveTask,
-      { headers: { 'authorization': userData.data.token } })
-      .then(res => res.data);
+    if (!modalEdit) {
+      setIsSaving(false);
+      setNewTask('tarefa');
+      await api.post('/tasks',
+        saveTask,
+        { headers: { 'authorization': userData.data.token } })
+        .then(res => res.data);
 
-    api.get('/tasks',
-      { headers: { 'authorization': userData.data.token } })
-      .then(res => setTasks(res.data));
+      await api.get('/tasks',
+        { headers: { 'authorization': userData.data.token } })
+        .then(res => setTasks(res.data));
 
-    setTimeout(() => {
-      setIsSaving(true);
-    }, 2000);
+      setTimeout(() => {
+        setIsSaving(true);
+      }, 2000);
+    } else {
+      setIsSaving(false);
+      setNewTask(taskInEdition.task);
+      setNewStatus(taskInEdition.status);
+
+    }
   };
 
   return (
@@ -68,7 +76,7 @@ function FormNewTask() {
       </Form.Select>
 
       {!modalEdit ?
-        <button type="button" onClick={handleSubmitNewTask}>
+        <button type="button" onClick={handleSubmitTask}>
           <img src={add_task} alt="Add Task" className="img-btn-new-task" />
         </button>
         : null}

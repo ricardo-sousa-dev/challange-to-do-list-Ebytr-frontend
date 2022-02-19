@@ -7,14 +7,14 @@ import Context from '../context/Context';
 function ModalEditTask() {
 
   const {
-    showModalEditTask,
-    setShowModalEditTask,
-    setModalEdit
+    setModalEdit,
+    modalEdit,
+    setNewTask
   } = useContext(Context);
 
   const handleClose = () => {
     setModalEdit(false);
-    setShowModalEditTask(false);
+    setNewTask('tarefa');
   };
 
   // const handleSubmitEditTask = () => {
@@ -38,7 +38,7 @@ function ModalEditTask() {
 
   return (
     <>
-      <Modal show={showModalEditTask} onHide={handleClose} animation={false}>
+      <Modal show={modalEdit} onHide={handleClose} animation={false}>
         <Modal.Header closeButton onClick={handleClose}>
           <Modal.Title>Editar Tarefa</Modal.Title>
         </Modal.Header>
