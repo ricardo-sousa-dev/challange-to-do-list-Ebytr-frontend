@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { Form } from 'react-bootstrap';
 import '../css/components/inputNewTask.css';
 import Context from '../context/Context';
@@ -12,13 +12,11 @@ function FormNewTask() {
     setTasks,
     setIsSaving,
     modalEdit,
-    // taskInEdition
+    newStatus,
+    setNewStatus,
+    newTask,
+    setNewTask,
   } = useContext(Context);
-
-  const [ newTask, setNewTask ] = useState('tarefa');
-  const [ newStatus, setNewStatus ] = useState('pendente');
-  console.log('>>>>>>>>>>>>> ~ newTask', newTask);
-  console.log('>>>>>>>>>>>>> ~ newStatus', newStatus);
 
   let saveTask = {};
 
@@ -33,7 +31,7 @@ function FormNewTask() {
     event.preventDefault();
 
     setIsSaving(false);
-
+    setNewTask('tarefa');
     api.post('/tasks',
       saveTask,
       { headers: { 'authorization': userData.data.token } })
@@ -54,6 +52,7 @@ function FormNewTask() {
         type="text"
         id="new-task"
         aria-describedby="New Task"
+        value={newTask !== 'tarefa' ? newTask : ' '}
         className="input-new-task"
         onChange={(event) => setNewTask(event.target.value)}
         placeholder="Tarefa"

@@ -5,12 +5,12 @@ import Context from './Context';
 function Provider({ children }) {
   const [ userData, setUserData ] = useState({});
   const [ tasks, setTasks ] = useState([]);
-  const [ newTask, setNewTask ] = useState('');
   const [ isSaving, setIsSaving ] = useState(true);
   const [ showModalEditTask, setShowModalEditTask ] = useState(false);
   const [ taskInEdition, setTaskInEdition ] = useState({});
   const [ modalEdit, setModalEdit ] = useState(false);
-
+  const [ newTask, setNewTask ] = useState('tarefa');
+  const [ newStatus, setNewStatus ] = useState('pendente');
 
   const providerValue = {
     userData,
@@ -27,6 +27,7 @@ function Provider({ children }) {
     setTaskInEdition,
     modalEdit,
     setModalEdit,
+    newStatus, setNewStatus
   };
 
   return (
