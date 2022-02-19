@@ -9,7 +9,6 @@ function FormLogin() {
   const [ name, setName ] = useState('');
   const [ password, setPassword ] = useState('');
   const [ email, setEmail ] = useState('');
-  const [ newUserOk, setNewUserOk ] = useState(false);
 
   const { setUserData } = useContext(Context);
 
@@ -26,7 +25,7 @@ function FormLogin() {
 
     try {
       await api.post('/user', userData);
-      setNewUserOk(true);
+      navigate('/tasks');
 
     } catch (err) {
       alert(err.message);
@@ -88,7 +87,6 @@ function FormLogin() {
           </Form>
         </Tab>
       </Tabs>
-      {newUserOk ? <div className="alert-newUser">Usuário cadastrado com sucesso!</div> : null}
     </div>
   );
 }
