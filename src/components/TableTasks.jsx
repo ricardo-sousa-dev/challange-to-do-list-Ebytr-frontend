@@ -1,12 +1,18 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Table, Button } from 'react-bootstrap';
 import '../css/components/tableTasks.css';
 import Context from '../context/Context';
 import ModalEditTask from './ModalEditTask';
 import api from '../api';
+import { FaArrowsAltV } from 'react-icons/fa';
+
 
 function TableTasks() {
   const localStorageUserData = JSON.parse(localStorage.getItem('userData'));
+  const [ orderTask, setOrderTask ] = useState(false);
+  const [ orderDate, setOrderDate ] = useState(false);
+  const [ orderStatus, setOrderStatus ] = useState(false);
+  const [ iconOrder, setIconOrder ] = useState();
 
   const {
     tasks,
@@ -42,6 +48,87 @@ function TableTasks() {
     }, 2000);
   };
 
+  const sortTasks = (order) => {
+    let newTasksOrdered;
+
+    switch (order) {
+    case 'order-task':
+
+      // setOrderStatus(false);
+      // setOrderDate(false);
+      setIconOrder('order-task');
+
+      if (orderTask) {
+        newTasksOrdered = tasks.sort((a, b) => {
+          if (a.task < b.task) return -1;
+          if (a.task > b.task) return 1;
+          return 0;
+        });
+      } else {
+        newTasksOrdered = tasks.sort((a, b) => {
+          if (a.task > b.task) return -1;
+          if (a.task < b.task) return 1;
+          return 0;
+        });
+      }
+
+      setOrderTask(!orderTask);
+      setTasks(newTasksOrdered);
+      break;
+
+    case 'order-status':
+
+      setOrderTask(false);
+      setOrderDate(false);
+      setIconOrder('order-status');
+
+      if (orderStatus) {
+        newTasksOrdered = tasks.sort((a, b) => {
+          if (a.status < b.status) return -1;
+          if (a.status > b.status) return 1;
+          return 0;
+        });
+      } else {
+        newTasksOrdered = tasks.sort((a, b) => {
+          if (a.status > b.status) return -1;
+          if (a.status < b.status) return 1;
+          return 0;
+        });
+      }
+
+      setOrderStatus(!orderStatus);
+      setTasks(newTasksOrdered);
+      break;
+
+    case 'order-date':
+
+      setOrderTask(false);
+      setOrderStatus(false);
+      setIconOrder('order-date');
+
+      if (orderDate) {
+        newTasksOrdered = tasks.sort((a, b) => {
+          if (a.createdAt < b.createdAt) return -1;
+          if (a.createdAt > b.createdAt) return 1;
+          return 0;
+        });
+      } else {
+        newTasksOrdered = tasks.sort((a, b) => {
+          if (a.createdAt > b.createdAt) return -1;
+          if (a.createdAt < b.createdAt) return 1;
+          return 0;
+        });
+      }
+
+      setOrderDate(!orderDate);
+      setTasks(newTasksOrdered);
+      break;
+
+    default:
+      break;
+    }
+  };
+
   return (
     <>
       <ModalEditTask />
@@ -49,9 +136,33 @@ function TableTasks() {
         <thead>
           <tr>
             <th className="item-table">Item</th>
-            <th className="task-table">Tarefa</th>
-            <th className="date-table">Criado em</th>
-            <th className="status-table">Status</th>
+            <th className="task-table">
+              <button
+                className="buttonOrderTask"
+                value="order-task"
+                onClick={(event) => sortTasks(event.target.value)}>
+                {iconOrder === 'order-task' ? <FaArrowsAltV className="iconOrder"/> : null}
+                Tarefa
+              </button>
+            </th>
+            <th className="date-table">
+              <button
+                className="buttonOrderDate"
+                value="order-date"
+                onClick={(event) => sortTasks(event.target.value)}>
+                {iconOrder === 'order-date' ? <FaArrowsAltV className="iconOrder"/> : null}
+                Criado em
+              </button>
+            </th>
+            <th className="status-table">
+              <button
+                className="buttonOrderStatus"
+                value="order-status"
+                onClick={(event) => sortTasks(event.target.value)}>
+                {iconOrder === 'order-status' ? <FaArrowsAltV className="iconOrder"/> : null}
+                Status
+              </button>
+            </th>
             <th className="buttons-table"></th>
           </tr>
         </thead>
@@ -59,11 +170,7 @@ function TableTasks() {
           {tasks.map((task, index) => (
             <tr key={task._id}>
               <td className="item-table">{index + 1}</td>
-              <td className="task-table">
-                <button>
-                  {task.task}
-                </button>
-              </td>
+              <td className="task-table">{task.task}</td>
               <td className="date-table">{task.createdAt}</td>
               <td className="status-table">{task.status}</td>
               <td className="buttons-table">

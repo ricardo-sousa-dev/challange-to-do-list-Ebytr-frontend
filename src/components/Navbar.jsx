@@ -7,7 +7,6 @@ import { Link } from 'react-router-dom';
 function NavbarTasks() {
 
   const localStorageUserData = JSON.parse(localStorage.getItem('userData'));
-  console.log('>>>>>>>>>>>>> ~ localStorageUserData', localStorageUserData);
   let user= localStorageUserData.user.name;
 
   return (

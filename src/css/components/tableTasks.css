@@ -35,13 +35,30 @@
 .update-button,
 .delete-button {
   font-size: 10px;
-  margin: 0 5px;
+  margin: 3px;
   font-weight: bold;
   height: 30px;
+  min-width: 60px;
 }
 
 .update-button:hover,
 .delete-button:hover {
   color: white;
   cursor: pointer;
+}
+
+.buttonOrderTask, .buttonOrderStatus, .buttonOrderDate {
+  font-weight: bolder;
+  width: 100px;
+}
+
+th {
+  font-weight: bolder;
+  font-size: 14px;
+  min-width: 120px;
+}
+
+.iconOrder {
+  color: #FF1616;
+  font-size: 20px;
 }

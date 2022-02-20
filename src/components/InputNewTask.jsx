@@ -8,7 +8,6 @@ import api from '../api';
 function FormNewTask() {
 
   const {
-    userData,
     setTasks,
     setIsSaving,
     modalEdit,
@@ -18,6 +17,8 @@ function FormNewTask() {
     setNewTask,
   } = useContext(Context);
 
+  const localStorageUserData = JSON.parse(localStorage.getItem('userData'));
+  
   let saveTask = {};
 
   useEffect(() => {
@@ -37,18 +38,18 @@ function FormNewTask() {
 
       await api.post('/tasks',
         saveTask,
-        { headers: { 'authorization': userData.data.token } })
+        { headers: { 'authorization': localStorageUserData.token } })
         .then(res => res.data);
 
       await api.get('/tasks',
-        { headers: { 'authorization': userData.data.token } })
+        { headers: { 'authorization': localStorageUserData.token } })
         .then(res => setTasks(res.data));
 
       setTimeout(() => {
         setIsSaving(true);
       }, 2000);
-    } catch (error) {
-      console.log(error);
+    } catch (err) {
+      console.log(err);
     }
   };
 
