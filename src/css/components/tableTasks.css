@@ -62,3 +62,9 @@ th {
   color: #FF1616;
   font-size: 20px;
 }
+
+.error-incorrect-user, .error-invalid-entries{
+  color: red;
+  font-size: 14px;
+  margin-top: 10px;
+}

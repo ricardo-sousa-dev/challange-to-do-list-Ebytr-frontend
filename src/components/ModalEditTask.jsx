@@ -35,8 +35,7 @@ function ModalEditTask() {
         status: newStatus,
       };
 
-      await api.put(`/tasks/${ taskInEdition._id }`, taskUpdated)
-        .then(res => res.data);
+      await api.put(`/tasks/${ taskInEdition._id }`, taskUpdated);
 
       setNewTask('tarefa');
       setNewStatus('pendente');
@@ -45,7 +44,13 @@ function ModalEditTask() {
         setIsSaving(true);
       }, 2000);
     } catch (err) {
-      console.log(err);
+      // if (err.response.data.message === 'Incorrect username or password') {
+      //   setErrorIncorrectUser(true);
+      //   setTimeout(() => {
+      //     setErrorIncorrectUser(false);
+      //   }, 5000);
+      // }
+      console.log(err.response.data.message);
     }
   };
 

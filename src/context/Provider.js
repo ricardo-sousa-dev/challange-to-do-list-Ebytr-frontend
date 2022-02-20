@@ -4,11 +4,14 @@ import Context from './Context';
 
 function Provider({ children }) {
   const [ tasks, setTasks ] = useState([]);
-  const [ isSaving, setIsSaving ] = useState(true);
   const [ taskInEdition, setTaskInEdition ] = useState({});
   const [ modalEdit, setModalEdit ] = useState(false);
   const [ newTask, setNewTask ] = useState('tarefa');
   const [ newStatus, setNewStatus ] = useState('pendente');
+  const [ isSaved, setIsSaved ] = useState(false);
+  const [ isSaving, setIsSaving ] = useState(false);
+  const [ errorTaskInvalid, setErrorTaskInvalid ] = useState(false);
+
 
   const providerValue = {
     tasks,
@@ -23,6 +26,10 @@ function Provider({ children }) {
     setModalEdit,
     newStatus,
     setNewStatus,
+    errorTaskInvalid,
+    setErrorTaskInvalid,
+    isSaved,
+    setIsSaved
   };
 
   return (

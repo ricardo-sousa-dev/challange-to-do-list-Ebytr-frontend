@@ -15,10 +15,13 @@ function FormNewTask() {
     setNewStatus,
     newTask,
     setNewTask,
+    errorTaskInvalid,
+    setErrorTaskInvalid,
+    setIsSaved,
   } = useContext(Context);
 
   const localStorageUserData = JSON.parse(localStorage.getItem('userData'));
-  
+
   let saveTask = {};
 
   useEffect(() => {
@@ -30,9 +33,9 @@ function FormNewTask() {
 
   const handleSubmitTask = async (event) => {
     event.preventDefault();
-
+    
+    setIsSaving(true);
     try {
-      setIsSaving(false);
       setNewTask('tarefa');
       setNewStatus('pendente');
 
@@ -46,20 +49,38 @@ function FormNewTask() {
         .then(res => setTasks(res.data));
 
       setTimeout(() => {
-        setIsSaving(true);
-      }, 2000);
+        setIsSaving(false);
+        setIsSaved(true);
+      }, 5000);
+      
+      setTimeout(() => {
+        setIsSaved(false);
+      }, 5000);
+
     } catch (err) {
-      console.log(err);
+
+      if (err.response.data.status === 400) {
+        setErrorTaskInvalid(true);
+        setIsSaved(false);
+        setIsSaving(false);
+
+        setTimeout(() => {
+          setErrorTaskInvalid(false);
+          setIsSaved(true);
+        }, 5000);
+      }
     }
   };
 
   return (
     <div className="form-new-task">
+      {errorTaskInvalid && !modalEdit ? <div className="error-invalid-entries">Dados inválidos! Tente novamente.</div> : null}
       <Form.Control
+        isValid={newTask !== '' && newTask !== 'tarefa' && !errorTaskInvalid}
         type="text"
         id="new-task"
         aria-describedby="New Task"
-        value={newTask !== 'tarefa' ? newTask : ' '}
+        value={newTask !== 'tarefa' ? newTask : ''}
         className="input-new-task"
         onChange={(event) => setNewTask(event.target.value)}
         placeholder="Tarefa"

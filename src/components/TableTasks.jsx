@@ -22,7 +22,7 @@ function TableTasks() {
     setTaskInEdition,
     setModalEdit,
     setNewTask,
-    setNewStatus,
+    setNewStatus, 
   } = useContext(Context);
 
   useEffect(() => {

@@ -8,6 +8,8 @@ function FormLogin() {
   const [ name, setName ] = useState('');
   const [ password, setPassword ] = useState('');
   const [ email, setEmail ] = useState('');
+  const [ errorIncorrectUser, setErrorIncorrectUser ] = useState(false);
+  const [ errorInvalidEntries, setErrorInvalidEntries ] = useState(false);
 
   const navigate = useNavigate();
 
@@ -32,7 +34,12 @@ function FormLogin() {
       navigate('/tasks');
 
     } catch (err) {
-      console.log(err);
+      if (err.response.data.message === 'Invalid entries. Try again.') {
+        setErrorInvalidEntries(true);
+        setTimeout(() => {
+          setErrorInvalidEntries(false);
+        }, 5000);
+      }
     }
   };
 
@@ -50,7 +57,12 @@ function FormLogin() {
       navigate('/tasks');
 
     } catch (err) {
-      console.log(err);
+      if (err.response.data.message === 'Incorrect username or password') {
+        setErrorIncorrectUser(true);
+        setTimeout(() => {
+          setErrorIncorrectUser(false);
+        }, 5000);
+      }
     }
   };
 
@@ -92,6 +104,8 @@ function FormLogin() {
           </Form>
         </Tab>
       </Tabs>
+      {errorIncorrectUser ? <div className="error-incorrect-user">Usuário ou senha incorretos!</div> : null}
+      {errorInvalidEntries ? <div className="error-invalid-entries">Dados inválidos! Tente novamente.</div> : null}
     </div>
   );
 }
