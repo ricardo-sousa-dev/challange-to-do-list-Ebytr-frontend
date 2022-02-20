@@ -1,5 +1,4 @@
-import React, { useState, useContext } from 'react';
-import Context from '../context/Context';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Form, Button, Tabs, Tab } from 'react-bootstrap';
 import '../css/components/formLogin.css';
@@ -10,25 +9,30 @@ function FormLogin() {
   const [ password, setPassword ] = useState('');
   const [ email, setEmail ] = useState('');
 
-  const { setUserData } = useContext(Context);
-
   const navigate = useNavigate();
 
   const handleNewUser = async (e) => {
     e.preventDefault();
 
-    const userData = {
-      name,
-      email,
-      password,
-    };
-
     try {
+      const userData = {
+        name,
+        email,
+        password,
+      };
+
       await api.post('/user', userData);
+
+      const user = await api.post('/login',
+        { email: userData.email, password: userData.password })
+        .then(res => res.data);
+
+      localStorage.setItem('userData', JSON.stringify(user));
+
       navigate('/tasks');
 
     } catch (err) {
-      alert(err.message);
+      console.log(err);
     }
   };
 
@@ -41,11 +45,12 @@ function FormLogin() {
     };
 
     try {
-      setUserData(await api.post('/login', userData));
+      const user = await api.post('/login', userData).then(res => res.data);
+      localStorage.setItem('userData', JSON.stringify(user));
       navigate('/tasks');
 
     } catch (err) {
-      alert(err.message);
+      console.log(err);
     }
   };
 

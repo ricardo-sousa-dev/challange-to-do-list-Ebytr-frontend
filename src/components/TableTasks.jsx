@@ -6,8 +6,9 @@ import ModalEditTask from './ModalEditTask';
 import api from '../api';
 
 function TableTasks() {
+  const localStorageUserData = JSON.parse(localStorage.getItem('userData'));
+
   const {
-    userData,
     tasks,
     setTasks,
     isSaving,
@@ -20,7 +21,7 @@ function TableTasks() {
 
   useEffect(() => {
     api.get('/tasks',
-      { headers: { 'authorization': userData.data.token } })
+      { headers: { 'authorization': localStorageUserData.token } })
       .then(res => setTasks(res.data));
   }, [ isSaving ]);
 
@@ -58,7 +59,11 @@ function TableTasks() {
           {tasks.map((task, index) => (
             <tr key={task._id}>
               <td className="item-table">{index + 1}</td>
-              <td className="task-table">{task.task}</td>
+              <td className="task-table">
+                <button>
+                  {task.task}
+                </button>
+              </td>
               <td className="date-table">{task.createdAt}</td>
               <td className="status-table">{task.status}</td>
               <td className="buttons-table">

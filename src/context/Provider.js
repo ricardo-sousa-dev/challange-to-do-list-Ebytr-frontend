@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import Context from './Context';
 
 function Provider({ children }) {
-  const [ userData, setUserData ] = useState({});
   const [ tasks, setTasks ] = useState([]);
   const [ isSaving, setIsSaving ] = useState(true);
   const [ taskInEdition, setTaskInEdition ] = useState({});
@@ -12,8 +11,6 @@ function Provider({ children }) {
   const [ newStatus, setNewStatus ] = useState('pendente');
 
   const providerValue = {
-    userData,
-    setUserData,
     tasks,
     setTasks,
     newTask,

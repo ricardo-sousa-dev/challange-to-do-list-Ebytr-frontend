@@ -1,14 +1,14 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Navbar, Nav, Offcanvas, Container } from 'react-bootstrap';
 import '../css/components/navbar.css';
 import Logo from '../images/ebytr.jpeg';
-import Context from '../context/Context';
 import { Link } from 'react-router-dom';
 
 function NavbarTasks() {
 
-  const { userData } = useContext(Context);
-  const user = userData.data.user.name;
+  const localStorageUserData = JSON.parse(localStorage.getItem('userData'));
+  console.log('>>>>>>>>>>>>> ~ localStorageUserData', localStorageUserData);
+  let user= localStorageUserData.user.name;
 
   return (
     <Navbar bg="light" expand={false} className="navbar">
