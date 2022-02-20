@@ -24,7 +24,8 @@ function Provider({ children }) {
     setTaskInEdition,
     modalEdit,
     setModalEdit,
-    newStatus, setNewStatus
+    newStatus,
+    setNewStatus,
   };
 
   return (

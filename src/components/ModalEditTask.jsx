@@ -3,38 +3,45 @@ import { Modal, Button } from 'react-bootstrap';
 import '../css/components/modalEditTask.css';
 import { InputNewTask } from '../components';
 import Context from '../context/Context';
+import api from '../api';
 
 function ModalEditTask() {
 
   const {
     setModalEdit,
     modalEdit,
-    setNewTask
+    setIsSaving,
+    setNewTask,
+    setNewStatus,
+    taskInEdition,
+    newTask,
+    newStatus,
   } = useContext(Context);
 
   const handleClose = () => {
     setModalEdit(false);
     setNewTask('tarefa');
+    setNewStatus('pendente');
   };
 
-  // const handleSubmitEditTask = () => {
-  //   event.preventDefault();
-  //   setIsSaving(false);
+  const handleUpdateTask = async () => {
 
-  //   api.update(`/tasks/${ id }`, id)
-  // }
+    setModalEdit(false);
 
-  // const saveTaskUpdated = async (event) => {
-  //     event.preventDefault();
+    setIsSaving(false);
 
-  //     setIsSaving(false);
+    const taskUpdated = {
+      task: newTask,
+      status: newStatus,
+    };
 
-  //     api.update(`/tasks/${ id }`, id)
-  //       .then(res => res.data);
+    await api.put(`/tasks/${ taskInEdition._id }`, taskUpdated)
+      .then(res => res.data);
 
-  //     setIsSaving(true);
-
-  //   }
+    setTimeout(() => {
+      setIsSaving(true);
+    }, 2000);
+  };
 
   return (
     <>
@@ -46,7 +53,7 @@ function ModalEditTask() {
           <InputNewTask />
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="primary" onClick={handleClose}>
+          <Button variant="primary" onClick={handleUpdateTask}>
             Salvar tarefa
           </Button>
         </Modal.Footer>

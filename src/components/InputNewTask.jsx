@@ -16,7 +16,6 @@ function FormNewTask() {
     setNewStatus,
     newTask,
     setNewTask,
-    taskInEdition
   } = useContext(Context);
 
   let saveTask = {};
@@ -31,9 +30,11 @@ function FormNewTask() {
   const handleSubmitTask = async (event) => {
     event.preventDefault();
 
-    if (!modalEdit) {
+    try {
       setIsSaving(false);
       setNewTask('tarefa');
+      setNewStatus('pendente');
+
       await api.post('/tasks',
         saveTask,
         { headers: { 'authorization': userData.data.token } })
@@ -46,11 +47,8 @@ function FormNewTask() {
       setTimeout(() => {
         setIsSaving(true);
       }, 2000);
-    } else {
-      setIsSaving(false);
-      setNewTask(taskInEdition.task);
-      setNewStatus(taskInEdition.status);
-
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -68,6 +66,7 @@ function FormNewTask() {
 
       <Form.Select
         aria-label="Select Status"
+        value={newStatus !== 'pendente' ? newStatus : 'pendente'}
         onChange={(event) => setNewStatus(event.target.value)}
         className="select-status">
         <option defaultValue value="pendente">Pendente</option>
