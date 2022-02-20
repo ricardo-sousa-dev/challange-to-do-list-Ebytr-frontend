@@ -25,22 +25,28 @@ function ModalEditTask() {
   };
 
   const handleUpdateTask = async () => {
+    try {
+      setModalEdit(false);
 
-    setModalEdit(false);
+      setIsSaving(false);
 
-    setIsSaving(false);
+      const taskUpdated = {
+        task: newTask,
+        status: newStatus,
+      };
 
-    const taskUpdated = {
-      task: newTask,
-      status: newStatus,
-    };
+      await api.put(`/tasks/${ taskInEdition._id }`, taskUpdated)
+        .then(res => res.data);
 
-    await api.put(`/tasks/${ taskInEdition._id }`, taskUpdated)
-      .then(res => res.data);
+      setNewTask('tarefa');
+      setNewStatus('pendente');
 
-    setTimeout(() => {
-      setIsSaving(true);
-    }, 2000);
+      setTimeout(() => {
+        setIsSaving(true);
+      }, 2000);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (

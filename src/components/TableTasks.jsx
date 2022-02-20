@@ -29,7 +29,6 @@ function TableTasks() {
     setNewTask(objectToUpdate.task);
     setNewStatus(objectToUpdate.status);
     setModalEdit(true);
-
   };
 
   const deleteTask = (idTask) => {
