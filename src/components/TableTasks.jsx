@@ -27,9 +27,12 @@ function TableTasks() {
   } = useContext(Context);
 
   useEffect(() => {
+    
     api.get('/tasks',
       { headers: { 'authorization': localStorageUserData.token } })
       .then(res => setTasks(res.data));
+
+    sortTasks('order-task');
   }, [ isSaving ]);
 
   const updateTask = async (objectToUpdate) => {
