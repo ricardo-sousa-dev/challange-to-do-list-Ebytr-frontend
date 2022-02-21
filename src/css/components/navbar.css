@@ -1,7 +1,6 @@
 .navbar {
   display: absolute;
   margin-bottom: 30px;
-  /* background-color: #e0e0e085 !important; */
   border-bottom: 1px solid #FF1616;
   width: 100%;
 }
@@ -21,7 +20,7 @@
 
 .title-page {
 
-  font-size: 1.5em;
+  font-size: 1em;
   font-weight: bold;
   color: #FF1616;
 }

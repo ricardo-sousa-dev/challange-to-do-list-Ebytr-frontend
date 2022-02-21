@@ -1,7 +1,7 @@
 .table {
   margin: 0 10px;
   border-radius: 5px;
-  max-width: 80%;
+  max-width: 90%;
 }
 
 .item-table,
@@ -9,6 +9,10 @@
 .status-table,
 .date-table {
   text-align: center;
+}
+
+.item-table {
+  width: 20px;
 }
 
 .buttons-table {
@@ -47,7 +51,9 @@
   cursor: pointer;
 }
 
-.buttonOrderTask, .buttonOrderStatus, .buttonOrderDate {
+.buttonOrderTask,
+.buttonOrderStatus,
+.buttonOrderDate {
   font-weight: bolder;
   width: 100px;
 }
@@ -55,7 +61,6 @@
 th {
   font-weight: bolder;
   font-size: 14px;
-  min-width: 120px;
 }
 
 .iconOrder {
@@ -63,12 +68,13 @@ th {
   font-size: 20px;
 }
 
-.error-incorrect-user, .error-invalid-entries{
+.error-incorrect-user,
+.error-invalid-entries {
   color: red;
   font-size: 14px;
   margin-top: 10px;
 }
 
-tr{
+tr {
   background-color: white;
 }

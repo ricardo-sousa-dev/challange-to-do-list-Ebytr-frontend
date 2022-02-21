@@ -185,7 +185,7 @@ function TableTasks() {
           {tasks.map((task, index) => (
             <tr key={task._id}>
               <td className="item-table">{index + 1}</td>
-              <td className="task-table">{task.task}</td>
+              <td>{task.task}</td>
               <td className="date-table">{task.createdAt}</td>
               <td className="status-table">{task.status}</td>
               <td className="buttons-table">
