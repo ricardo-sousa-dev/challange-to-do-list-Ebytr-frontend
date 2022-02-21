@@ -1,0 +1,22 @@
+.simple-footer {
+    background-color: #FF1616;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 15px;
+}
+
+.social-media{
+    display: flex;
+    justify-content: space-between;
+    width:100px;
+    font-size: 24px;
+    margin: 0 20px;
+    padding: 0;
+}
+
+.icon-social-media{
+    color: white;
+    margin: 0 10px;
+}

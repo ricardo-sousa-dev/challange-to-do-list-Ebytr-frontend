@@ -1,17 +1,20 @@
 import React from 'react';
-import { TableTasks, Navbar, InputNewTask, IsSaving } from '../components';
+import { TableTasks, Navbar, InputNewTask, IsSaving, SimpleFooter } from '../components';
 import '../css/pages/tasks.css';
 
 function Tasks() {
   return (
     <div className="tasks-page">
-      <Navbar />
-      <div className="messages-error-save">
-        {' '}
-        <IsSaving />
+      <div className="tasks-body">
+        <Navbar />
+        <div className="messages-error-save">
+          {' '}
+          <IsSaving />
+        </div>
+        <InputNewTask />
+        <TableTasks />
       </div>
-      <InputNewTask />
-      <TableTasks />
+      <SimpleFooter />
     </div>
   );
 }
