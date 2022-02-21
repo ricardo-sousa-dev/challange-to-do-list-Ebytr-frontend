@@ -1,5 +1,12 @@
 import React from 'react';
-import { TableTasks, Navbar, InputNewTask, IsSaving, SimpleFooter } from '../components';
+import {
+  TableTasks,
+  Navbar,
+  InputNewTask,
+  IsSaving,
+  SimpleFooter
+} from '../components';
+
 import '../css/pages/tasks.css';
 
 function Tasks() {
