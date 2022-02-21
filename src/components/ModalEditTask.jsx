@@ -11,6 +11,7 @@ function ModalEditTask() {
     setModalEdit,
     modalEdit,
     setIsSaving,
+    setIsSaved,
     setNewTask,
     setNewStatus,
     taskInEdition,
@@ -20,8 +21,7 @@ function ModalEditTask() {
 
   const handleClose = () => {
     setModalEdit(false);
-    setNewTask('tarefa');
-    setNewStatus('pendente');
+    setNewTask('');
   };
 
   const handleUpdateTask = async () => {
@@ -37,19 +37,24 @@ function ModalEditTask() {
 
       await api.put(`/tasks/${ taskInEdition._id }`, taskUpdated);
 
-      setNewTask('tarefa');
       setNewStatus('pendente');
+      setNewTask('');
+
+      setIsSaving(true);
 
       setTimeout(() => {
-        setIsSaving(true);
-      }, 2000);
+
+        setIsSaving(false);
+        setIsSaved(true);
+
+        setTimeout(() => {
+          setIsSaved(false);
+        }, 5000);
+
+      }, 5000);
+
     } catch (err) {
-      // if (err.response.data.message === 'Incorrect username or password') {
-      //   setErrorIncorrectUser(true);
-      //   setTimeout(() => {
-      //     setErrorIncorrectUser(false);
-      //   }, 5000);
-      // }
+      alert('Algo deu errado :(');
       console.log(err.response.data.message);
     }
   };

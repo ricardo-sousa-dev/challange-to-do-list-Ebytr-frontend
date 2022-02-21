@@ -18,11 +18,12 @@ function TableTasks() {
     tasks,
     setTasks,
     isSaving,
+    setIsSaved,
     setIsSaving,
     setTaskInEdition,
     setModalEdit,
     setNewTask,
-    setNewStatus, 
+    setNewStatus,
   } = useContext(Context);
 
   useEffect(() => {
@@ -39,13 +40,29 @@ function TableTasks() {
   };
 
   const deleteTask = (idTask) => {
-    setIsSaving(false);
+    try {
+      api.delete(`/tasks/${ idTask }`, idTask);
 
-    api.delete(`/tasks/${ idTask }`, idTask);
+      setNewStatus('pendente');
+      setNewTask('');
 
-    setTimeout(() => {
       setIsSaving(true);
-    }, 2000);
+
+      setTimeout(() => {
+
+        setIsSaving(false);
+        setIsSaved(true);
+
+        setTimeout(() => {
+          setIsSaved(false);
+        }, 5000);
+
+      }, 5000);
+
+    } catch (err) {
+      alert('Algo deu errado :(');
+      console.log(err.response.data.message);
+    }
   };
 
   const sortTasks = (order) => {
@@ -54,8 +71,6 @@ function TableTasks() {
     switch (order) {
     case 'order-task':
 
-      // setOrderStatus(false);
-      // setOrderDate(false);
       setIconOrder('order-task');
 
       if (orderTask) {
@@ -141,7 +156,7 @@ function TableTasks() {
                 className="buttonOrderTask"
                 value="order-task"
                 onClick={(event) => sortTasks(event.target.value)}>
-                {iconOrder === 'order-task' ? <FaArrowsAltV className="iconOrder"/> : null}
+                {iconOrder === 'order-task' ? <FaArrowsAltV className="iconOrder" /> : null}
                 Tarefa
               </button>
             </th>
@@ -150,7 +165,7 @@ function TableTasks() {
                 className="buttonOrderDate"
                 value="order-date"
                 onClick={(event) => sortTasks(event.target.value)}>
-                {iconOrder === 'order-date' ? <FaArrowsAltV className="iconOrder"/> : null}
+                {iconOrder === 'order-date' ? <FaArrowsAltV className="iconOrder" /> : null}
                 Criado em
               </button>
             </th>
@@ -159,7 +174,7 @@ function TableTasks() {
                 className="buttonOrderStatus"
                 value="order-status"
                 onClick={(event) => sortTasks(event.target.value)}>
-                {iconOrder === 'order-status' ? <FaArrowsAltV className="iconOrder"/> : null}
+                {iconOrder === 'order-status' ? <FaArrowsAltV className="iconOrder" /> : null}
                 Status
               </button>
             </th>

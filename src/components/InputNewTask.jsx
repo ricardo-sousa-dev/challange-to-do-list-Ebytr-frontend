@@ -59,12 +59,13 @@ function FormNewTask() {
         }, 5000);
 
         setNewTask('');
-        
+
       } else {
         alert('Preencha o campo de tarefa');
       }
 
     } catch (err) {
+      alert('Algo deu errado :(');
       console.log(err.response.data.message);
     }
   };
