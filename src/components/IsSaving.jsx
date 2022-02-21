@@ -3,10 +3,9 @@ import Spinner from 'react-bootstrap/Spinner';
 import '../css/components/isSaving.css';
 import Context from '../context/Context';
 import { FaCheckDouble } from 'react-icons/fa';
-import { VscClose } from 'react-icons/vsc';
 
 function IsSaving() {
-  const { isSaving, errorTaskInvalid, isSaved } = useContext(Context);
+  const { isSaving, isSaved } = useContext(Context);
 
   const msgSavingTasks =
     <div className="saving-tasks">
@@ -26,17 +25,10 @@ function IsSaving() {
       <p>Tarefas salvas com sucesso!</p>
     </div>;
 
-  const msgErrorTaskInvalid =
-    <div className="save-check-tasks">
-      <VscClose />
-      <p>Dados inválidos!</p>
-    </div>;
-
   return (
     <div className="isSaving">
-      {isSaving && !isSaved && !errorTaskInvalid ? msgSavingTasks : null}
-      {!isSaving && isSaved && !errorTaskInvalid ? msgSavingTasksSuccess : null}
-      {errorTaskInvalid && !isSaving && !isSaved ? msgErrorTaskInvalid : null}
+      {isSaving ? msgSavingTasks : null}
+      {isSaved ? msgSavingTasksSuccess : null}
     </div>
   );
 }

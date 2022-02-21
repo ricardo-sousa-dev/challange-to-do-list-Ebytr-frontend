@@ -15,8 +15,6 @@ function FormNewTask() {
     setNewStatus,
     newTask,
     setNewTask,
-    errorTaskInvalid,
-    setErrorTaskInvalid,
     setIsSaved,
   } = useContext(Context);
 
@@ -33,50 +31,48 @@ function FormNewTask() {
 
   const handleSubmitTask = async (event) => {
     event.preventDefault();
-    
-    setIsSaving(true);
+
     try {
-      setNewTask('tarefa');
       setNewStatus('pendente');
 
-      await api.post('/tasks',
-        saveTask,
-        { headers: { 'authorization': localStorageUserData.token } })
-        .then(res => res.data);
+      if (newTask !== '') {
+        await api.post('/tasks',
+          saveTask,
+          { headers: { 'authorization': localStorageUserData.token } })
+          .then(res => res.data);
 
-      await api.get('/tasks',
-        { headers: { 'authorization': localStorageUserData.token } })
-        .then(res => setTasks(res.data));
+        await api.get('/tasks',
+          { headers: { 'authorization': localStorageUserData.token } })
+          .then(res => setTasks(res.data));
 
-      setTimeout(() => {
-        setIsSaving(false);
-        setIsSaved(true);
-      }, 5000);
-      
-      setTimeout(() => {
-        setIsSaved(false);
-      }, 5000);
-
-    } catch (err) {
-
-      if (err.response.data.status === 400) {
-        setErrorTaskInvalid(true);
-        setIsSaved(false);
-        setIsSaving(false);
+        setIsSaving(true);
 
         setTimeout(() => {
-          setErrorTaskInvalid(false);
+
+          setIsSaving(false);
           setIsSaved(true);
+
+          setTimeout(() => {
+            setIsSaved(false);
+          }, 5000);
+
         }, 5000);
+
+        setNewTask('');
+        
+      } else {
+        alert('Preencha o campo de tarefa');
       }
+
+    } catch (err) {
+      console.log(err.response.data.message);
     }
   };
 
   return (
     <div className="form-new-task">
-      {errorTaskInvalid && !modalEdit ? <div className="error-invalid-entries">Dados inválidos! Tente novamente.</div> : null}
       <Form.Control
-        isValid={newTask !== '' && newTask !== 'tarefa' && !errorTaskInvalid}
+        isValid={newTask !== ''}
         type="text"
         id="new-task"
         aria-describedby="New Task"

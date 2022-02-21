@@ -26,3 +26,11 @@ p {
   margin: 0;
   margin-left: 5px;
 }
+
+.messages-error-save {
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  height:20px;
+  margin-top:115px;
+}

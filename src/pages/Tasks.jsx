@@ -6,7 +6,10 @@ function Tasks() {
   return (
     <div className="tasks-page">
       <Navbar />
-      <IsSaving />
+      <div className="messages-error-save">
+        {' '}
+        <IsSaving />
+      </div>
       <InputNewTask />
       <TableTasks />
     </div>

@@ -6,11 +6,10 @@ function Provider({ children }) {
   const [ tasks, setTasks ] = useState([]);
   const [ taskInEdition, setTaskInEdition ] = useState({});
   const [ modalEdit, setModalEdit ] = useState(false);
-  const [ newTask, setNewTask ] = useState('tarefa');
+  const [ newTask, setNewTask ] = useState('');
   const [ newStatus, setNewStatus ] = useState('pendente');
   const [ isSaved, setIsSaved ] = useState(false);
   const [ isSaving, setIsSaving ] = useState(false);
-  const [ errorTaskInvalid, setErrorTaskInvalid ] = useState(false);
 
 
   const providerValue = {
@@ -26,8 +25,6 @@ function Provider({ children }) {
     setModalEdit,
     newStatus,
     setNewStatus,
-    errorTaskInvalid,
-    setErrorTaskInvalid,
     isSaved,
     setIsSaved
   };
