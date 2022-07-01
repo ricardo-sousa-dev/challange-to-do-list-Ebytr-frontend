@@ -83,7 +83,6 @@ Foi utilizado para o desenvolvimento desse projeto o `React JS` com `Bootstrap` 
 
 [![Linkedin Badge](https://img.shields.io/badge/-LinkedIn-0077B5?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/rwmsousa/)](https://www.linkedin.com/in/rwmsousa/) [![Gmail Badge](https://img.shields.io/badge/-Gmail-D14836?style=flat-square&logo=Gmail&logoColor=white&link=mailto:rwmsousa@gmail.com)](mailto:rwmsousa@gmail.com)
 
-<img src="https://bit.ly/foto-linkedin" style="height: 100px; width:100px; border-radius:50px"/>
 
 
 
